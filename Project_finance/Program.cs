@@ -10,6 +10,16 @@ namespace Project_finance
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello World!");
+
+            bool end = false;
+            while (!end)
+            {
+
+                Console.WriteLine("Type anything to terminate program: ");
+                int c = Console.Read();
+                end = true;
+            }
         }
     }
 }
