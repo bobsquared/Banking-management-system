@@ -40,6 +40,16 @@ namespace UserAndPass
             one.SetName();
             one.SetPassword();
             Console.WriteLine("Username Chosen: {0}", one.GetUsername());
+
+
+            bool end = false;
+            while (!end)
+            {
+
+                Console.WriteLine("\nType anything to terminate program: ");
+                int c = Console.Read();
+                end = true;
+            }
         }
     }
 }
