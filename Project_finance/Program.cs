@@ -13,7 +13,7 @@ namespace UserAndPass
     {
         string username;
         string password;
-
+        //access private variables using the class functions normally, not needed to use 
 
         public string GetUsername()
         {
@@ -27,16 +27,41 @@ namespace UserAndPass
 
         public void SetName()
         {
-            Console.WriteLine("Enter a username: ");
-            username = Console.ReadLine();
+
+    
+
+            while (username == null || username.Length > 50)
+            {
+
+                Console.WriteLine("Enter a username: ");
+                username = Console.ReadLine();
+
+                if (username.Length > 50)
+                {
+                    Console.WriteLine("Username is too long, please re-try. \n");
+
+                }
+            }
         }
 
         public void SetPassword()
         {
-            Console.WriteLine("Select a password: ");
-            password = Console.ReadLine();
+            while (password == null || password.Length > 50)
+            {
+
+                Console.WriteLine("Enter a password: ");
+                password = Console.ReadLine();
+
+                if (password.Length > 50)
+
+                {
+                    Console.WriteLine("Password is too long, please re-try. \n");
+
+                }
+            }
         }
     }
+
 
     class Program
     {
@@ -97,17 +122,11 @@ namespace UserAndPass
             while (sqlite_datareader.Read()) // Read() returns true if there is still a result line to read
             {
                 // Print out the content of the text field:
-                System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"] , sqlite_datareader["password"]);
+                System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["password"]);
             }
 
             // We are ready, now lets cleanup and close our connection:
             sqlite_conn.Close();
-
-
-
-
-
-
 
 
             bool end = false;
@@ -121,3 +140,4 @@ namespace UserAndPass
         }
     }
 }
+
