@@ -55,6 +55,7 @@ namespace Project_finance
             return password;
         }
 
+
         public void SetName()
         {
 
@@ -108,7 +109,7 @@ namespace Project_finance
             Console.WriteLine("Username Chosen: {0}", one.GetUsername());
             string encryption = one.encryptCaesar();
 
-
+            
 
 
 
@@ -120,25 +121,50 @@ namespace Project_finance
             SQLiteDataReader sqlite_datareader;
 
             // create a new database connection:
-            sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=True;Compress=True;");
+            sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=False;Compress=True;");
 
             // open the connection:
             sqlite_conn.Open();
 
-            // create a new SQL command:
-            sqlite_cmd = sqlite_conn.CreateCommand();
 
-            // Let the SQLiteCommand object know our SQL-Query:
-            sqlite_cmd.CommandText = "CREATE TABLE User (username varchar(50) primary key, password varchar(50));";
+            try
+            {
 
-            // Now lets execute the SQL ;D
-            sqlite_cmd.ExecuteNonQuery();
+                // create a new SQL command:
+                sqlite_cmd = sqlite_conn.CreateCommand();
 
-            // Lets insert something into our new table:
-            sqlite_cmd.CommandText = String.Format("INSERT INTO User VALUES ('{0}' , '{1}');", one.GetUsername(), encryption);
+                // Lets insert something into our new table:
+                sqlite_cmd.CommandText = String.Format("INSERT INTO User VALUES ('{0}' , '{1}');", one.GetUsername(), encryption);
 
-            // And execute this again ;D
-            sqlite_cmd.ExecuteNonQuery();
+                // And execute this again ;D
+                sqlite_cmd.ExecuteNonQuery();
+
+
+            }
+
+            catch (Exception e)
+            {
+
+                // create a new SQL command:
+                sqlite_cmd = sqlite_conn.CreateCommand();
+
+
+                // Let the SQLiteCommand object know our SQL-Query:
+                sqlite_cmd.CommandText = "CREATE TABLE User (username varchar(50) primary key, password varchar(50));";
+
+                // Now lets execute the SQL ;D
+                sqlite_cmd.ExecuteNonQuery();
+
+                // create a new SQL command:
+                sqlite_cmd = sqlite_conn.CreateCommand();
+
+                // Lets insert something into our new table:
+                sqlite_cmd.CommandText = String.Format("INSERT INTO User VALUES ('{0}' , '{1}');", one.GetUsername(), encryption);
+
+                // And execute this again ;D
+                sqlite_cmd.ExecuteNonQuery();
+
+            }
 
             // But how do we read something out of our table ?
             // First lets build a SQL-Query again:
