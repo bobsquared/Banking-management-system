@@ -15,6 +15,36 @@ namespace UserAndPass
         string password;
         //access private variables using the class functions normally, not needed to use 
 
+        public string encryptCaesar()
+        {
+            int shift = 7;
+            string encryption = "";
+
+            for (int i = 0; i < password.Length; i++)
+            {
+
+                int ascii = password[i];
+
+                if (password[i] >= 65 && password[i] <= 90)
+                {
+                    ascii = ((26 - (90 - password[i] + 1) + shift) % 26) + 65;
+ 
+
+                }
+                else if (password[i] >= 97 && password[i] <= 122)
+                {
+                    ascii = ((26 - (122 - password[i] + 1) + shift) % 26) + 97;
+
+
+                }
+
+
+                encryption = encryption + (char)ascii;
+            }
+
+            return encryption;
+        }
+
         public string GetUsername()
         {
             return username;
@@ -71,7 +101,7 @@ namespace UserAndPass
             one.SetName();
             one.SetPassword();
             Console.WriteLine("Username Chosen: {0}", one.GetUsername());
-
+            string encryption = one.encryptCaesar();
 
 
 
@@ -100,13 +130,7 @@ namespace UserAndPass
             sqlite_cmd.ExecuteNonQuery();
 
             // Lets insert something into our new table:
-            sqlite_cmd.CommandText = String.Format("INSERT INTO User VALUES ('{0}' , '{1}');", one.GetUsername(), one.GetPassword());
-
-            // And execute this again ;D
-            sqlite_cmd.ExecuteNonQuery();
-
-            // ...and inserting another line:
-            sqlite_cmd.CommandText = "INSERT INTO User VALUES ('Vincent', 'Banker');";
+            sqlite_cmd.CommandText = String.Format("INSERT INTO User VALUES ('{0}' , '{1}');", one.GetUsername(), encryption);
 
             // And execute this again ;D
             sqlite_cmd.ExecuteNonQuery();
