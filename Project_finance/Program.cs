@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Finisar.SQLite;
 
 
-namespace UserAndPass
+namespace Project_finance
 {
 
     class User
@@ -97,6 +97,11 @@ namespace UserAndPass
     {
         static void Main(string[] args)
         {
+
+            Chequing acc1 = new Chequing();
+            acc1.SetTransactionDate("ass");
+            Console.WriteLine("Account Name Chosen: {0}", acc1.getTransactionDate());
+
             User one = new User();
             one.SetName();
             one.SetPassword();
