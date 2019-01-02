@@ -9,9 +9,9 @@ namespace Project_finance
     class UserAccounts
     {
         protected string accountName;
-        protected int balance;
+        protected float balance;
         protected string transactionDate;
-        protected int transactionAmount;
+        protected float transactionAmount;
         protected string transactionName;
 
        
@@ -19,6 +19,7 @@ namespace Project_finance
         {
             accountName = name;
         }
+
         public string account_name()
         {
             return accountName;
@@ -45,20 +46,27 @@ namespace Project_finance
         }
 
 
-        public void SetTransactionAmount(string amount)
+        public void SetTransactionAmount(float amount)
         {
-            transactionDate = amount;
+            transactionAmount = amount;
         }
 
-        public int getTransactionAmount()
+        public float getTransactionAmount()
         {
             return transactionAmount;
         }
 
-        public int GetBalance()
+
+        public float GetBalance()
         {
             return balance;
         }
+
+        public void SetBalance(float balanceTotal)
+        {
+            balance = balanceTotal;
+        }
+
 
     }
 
@@ -70,9 +78,9 @@ namespace Project_finance
 
     class Savings : UserAccounts
     {
-        int primeRate;
+        float primeRate;
 
-        public int annualInterestRate()
+        public float annualInterestRate()
         {
             return (balance * (primeRate / 100));
         }
