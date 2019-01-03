@@ -121,54 +121,61 @@ namespace Project_finance
             SQLiteDataReader sqlite_datareader;
 
             // create a new database connection:
-            sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=False;Compress=True;");
+            sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=True;Compress=True;");
 
             // open the connection:
             sqlite_conn.Open();
 
 
-            try
-            {
+            //CREATE TABLES HERE
 
-                // create a new SQL command:
-                sqlite_cmd = sqlite_conn.CreateCommand();
+            // create a new SQL command:
+            sqlite_cmd = sqlite_conn.CreateCommand();
 
-                // Lets insert something into our new table:
-                sqlite_cmd.CommandText = String.Format("INSERT INTO User VALUES ('{0}' , '{1}');", one.GetUsername(), encryption);
+            // Let the SQLiteCommand object know our SQL-Query:
+            sqlite_cmd.CommandText = "CREATE TABLE Accounts (Type varchar(50), Balance float, Interest float, id int primary key);";
 
-                // And execute this again ;D
-                sqlite_cmd.ExecuteNonQuery();
+            // Now lets execute the SQL ;D
+            sqlite_cmd.ExecuteNonQuery();
+
+            // Let the SQLiteCommand object know our SQL-Query:
+            sqlite_cmd.CommandText = "CREATE TABLE User (username varchar(50), name varchar(50), id int primary key, birthdate date, salary int, foreign key (id) references Accounts(id));";
+
+            // Now lets execute the SQL ;D
+            sqlite_cmd.ExecuteNonQuery();
+
+            // Let the SQLiteCommand object know our SQL-Query:
+            sqlite_cmd.CommandText = "CREATE TABLE Login (username varchar(50) primary key, password varchar(50));";
+
+            // Now lets execute the SQL ;D
+            sqlite_cmd.ExecuteNonQuery();
+
+            // Let the SQLiteCommand object know our SQL-Query:
+            sqlite_cmd.CommandText = "CREATE TABLE Transactions (Date date, Amount float, id int primary key, name varchar(50), tnumber int, foreign key (id) references Accounts(id));";
+
+            // Now lets execute the SQL ;D
+            sqlite_cmd.ExecuteNonQuery();
+
+            // create a new SQL command:
+            sqlite_cmd = sqlite_conn.CreateCommand();
+
+            // Lets insert something into our new table:
+            sqlite_cmd.CommandText = String.Format("INSERT INTO Login VALUES ('{0}' , '{1}');", one.GetUsername(), encryption);
+
+            // And execute this again ;D
+            sqlite_cmd.ExecuteNonQuery();
 
 
-            }
+            //TABLES CREATION END HERE
 
-            catch (Exception e)
-            {
-
-                // create a new SQL command:
-                sqlite_cmd = sqlite_conn.CreateCommand();
+            //INSERT VALUES
 
 
-                // Let the SQLiteCommand object know our SQL-Query:
-                sqlite_cmd.CommandText = "CREATE TABLE User (username varchar(50) primary key, password varchar(50));";
-
-                // Now lets execute the SQL ;D
-                sqlite_cmd.ExecuteNonQuery();
-
-                // create a new SQL command:
-                sqlite_cmd = sqlite_conn.CreateCommand();
-
-                // Lets insert something into our new table:
-                sqlite_cmd.CommandText = String.Format("INSERT INTO User VALUES ('{0}' , '{1}');", one.GetUsername(), encryption);
-
-                // And execute this again ;D
-                sqlite_cmd.ExecuteNonQuery();
-
-            }
+            
 
             // But how do we read something out of our table ?
             // First lets build a SQL-Query again:
-            sqlite_cmd.CommandText = "SELECT * FROM User";
+            sqlite_cmd.CommandText = "SELECT * FROM Login";
 
             // Now the SQLiteCommand object can give us a DataReader-Object:
             sqlite_datareader = sqlite_cmd.ExecuteReader();
