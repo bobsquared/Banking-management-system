@@ -109,7 +109,6 @@ namespace Project_finance
             Console.WriteLine("Username Chosen: {0}", one.GetUsername());
             string encryption = one.encryptCaesar();
 
-            
 
 
 
