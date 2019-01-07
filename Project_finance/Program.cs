@@ -13,6 +13,11 @@ namespace Project_finance
     {
         string username;
         string password;
+        string birthdate;
+        int userID;
+        float salary;
+        string namePerson;
+
         //access private variables using the class functions normally, not needed to use 
 
         public string encryptCaesar()
@@ -55,8 +60,58 @@ namespace Project_finance
             return password;
         }
 
+        public string getNameOfPerson()
+        {
+            return namePerson;
+        }
 
-        public void SetName()
+        public void SetNamePerson(string name)
+        {
+            namePerson = name;
+        }
+
+        public void setUsername(string name)
+        {
+            username = name;
+        }
+
+        public void SetPassword(string pass)
+        {
+            password = pass;
+        }
+
+        public void setUserID(int ID)
+        {
+            userID = ID;
+        }
+
+        public void SetSalary(float amount)
+        {
+            salary = amount;
+        }
+
+        public int getUserID()
+        {
+            return userID;
+        }
+        public float getSalary()
+        {
+            return salary;
+        }
+
+        public void setBirthdate(string age)
+        {
+            birthdate = age;
+        }
+
+        public string getBirthdate()
+        {
+            return birthdate;
+        }
+
+
+
+        public void loginName()
         {
 
     
@@ -75,7 +130,7 @@ namespace Project_finance
             }
         }
 
-        public void SetPassword()
+        public void loginPassword()
         {
             while (password == null || password.Length > 50)
             {
@@ -91,6 +146,7 @@ namespace Project_finance
                 }
             }
         }
+
     }
 
 
@@ -104,12 +160,11 @@ namespace Project_finance
             Console.WriteLine("Account Name Chosen: {0}", acc1.getTransactionDate());
 
             User one = new User();
-            one.SetName();
-            one.SetPassword();
+            one.loginName();
+            one.loginPassword();
             Console.WriteLine("Username Chosen: {0}", one.GetUsername());
             string encryption = one.encryptCaesar();
 
-            
 
 
 
@@ -122,15 +177,21 @@ namespace Project_finance
 
             // create a new database connection:
             sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=False;Compress=True;");
+<<<<<<< HEAD
+=======
+
+           
+>>>>>>> origin/master
 
             // open the connection:
             sqlite_conn.Open();
+            sqlite_cmd = sqlite_conn.CreateCommand();
 
-
+            /*
             //CREATE TABLES HERE
 
             // create a new SQL command:
-            sqlite_cmd = sqlite_conn.CreateCommand();
+            
 
             // Let the SQLiteCommand object know our SQL-Query:
             sqlite_cmd.CommandText = "CREATE TABLE Accounts (Type varchar(50), Balance float, Interest float, id int primary key);";
@@ -167,15 +228,23 @@ namespace Project_finance
 
 
             //TABLES CREATION END HERE
+            */
 
             //INSERT VALUES
 
 
-            
+
 
             // But how do we read something out of our table ?
             // First lets build a SQL-Query again:
-            sqlite_cmd.CommandText = "SELECT * FROM Login";
+            sqlite_cmd.CommandText = "SELECT * FROM User";
+
+            User[] users = new User[3];
+            User user1 = new User();
+
+    
+
+            // User userTitle[3] = new User[];
 
             // Now the SQLiteCommand object can give us a DataReader-Object:
             sqlite_datareader = sqlite_cmd.ExecuteReader();
@@ -184,7 +253,14 @@ namespace Project_finance
             while (sqlite_datareader.Read()) // Read() returns true if there is still a result line to read
             {
                 // Print out the content of the text field:
+<<<<<<< HEAD
                 System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["password"]);
+=======
+              //("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["Name"]);
+               
+            user1.setBirthdate()
+           
+>>>>>>> origin/master
 
             }
 
