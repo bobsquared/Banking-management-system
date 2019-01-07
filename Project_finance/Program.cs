@@ -177,8 +177,11 @@ namespace Project_finance
 
             // create a new database connection:
             sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=False;Compress=True;");
+<<<<<<< HEAD
+=======
 
            
+>>>>>>> origin/master
 
             // open the connection:
             sqlite_conn.Open();
@@ -257,10 +260,14 @@ namespace Project_finance
                // user1.
 
                 // Print out the content of the text field:
+<<<<<<< HEAD
+                System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["password"]);
+=======
               //("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["Name"]);
                
             user1.setBirthdate()
            
+>>>>>>> origin/master
 
             }
 
