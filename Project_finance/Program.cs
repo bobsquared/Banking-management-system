@@ -50,12 +50,12 @@ namespace Project_finance
             return encryption;
         }
 
-        public string GetUsername()
+        public string getUsername()
         {
             return username;
         }
 
-        public string GetPassword()
+        public string getPassword()
         {
             return password;
         }
@@ -65,7 +65,7 @@ namespace Project_finance
             return namePerson;
         }
 
-        public void SetNamePerson(string name)
+        public void setNamePerson(string name)
         {
             namePerson = name;
         }
@@ -75,7 +75,7 @@ namespace Project_finance
             username = name;
         }
 
-        public void SetPassword(string pass)
+        public void setPassword(string pass)
         {
             password = pass;
         }
@@ -85,7 +85,7 @@ namespace Project_finance
             userID = ID;
         }
 
-        public void SetSalary(float amount)
+        public void setSalary(float amount)
         {
             salary = amount;
         }
@@ -166,7 +166,7 @@ namespace Project_finance
             User one = new User();
             one.loginName();
             one.loginPassword();
-            Console.WriteLine("Username Chosen: {0}", one.GetUsername());
+            Console.WriteLine("Username Chosen: {0}", one.getUsername());
             string encryption = one.encryptCaesar();
 
 
@@ -256,18 +256,15 @@ namespace Project_finance
                 User user1 = new User();
 
                 user1.setUsername(sqlite_datareader["username"].ToString());
-                user1.SetNamePerson(sqlite_datareader["name"].ToString());
+                user1.setNamePerson(sqlite_datareader["name"].ToString());
                 user1.setBirthdate(sqlite_datareader["birthdate"].ToString());
-                user1.SetSalary(float.Parse(sqlite_datareader["salary"].ToString()));
+                user1.setSalary(float.Parse(sqlite_datareader["salary"].ToString()));
                 user1.setUserID(int.Parse(sqlite_datareader["id"].ToString()));
 
                 users[i] = user1;
                 users[i].printUserInfo();
 
 
-                // user1.
-
-                // Print out the content of the text field:<<<<<<< HEAD
 
                 //  System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["password"]);
 
