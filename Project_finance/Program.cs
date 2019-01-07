@@ -238,6 +238,7 @@ namespace Project_finance
 
             User[] users = new User[3];
             User user1 = new User();
+            int i = 0;
 
     
 
@@ -249,6 +250,12 @@ namespace Project_finance
             // The SQLiteDataReader allows us to run through the result lines:
             while (sqlite_datareader.Read()) // Read() returns true if there is still a result line to read
             {
+                user1.setUsername(sqlite_datareader["Username"]);
+                user1.setNamePerson(sqlite_datareader["Name"]);
+                user1.setBirthdate(sqlite_datareader[""]);
+                users[i] = User1;
+               // user1.
+
                 // Print out the content of the text field:
               //("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["Name"]);
                
