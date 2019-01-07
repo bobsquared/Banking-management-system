@@ -121,7 +121,7 @@ namespace Project_finance
             SQLiteDataReader sqlite_datareader;
 
             // create a new database connection:
-            sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=True;Compress=True;");
+            sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=False;Compress=True;");
 
             // open the connection:
             sqlite_conn.Open();
@@ -185,6 +185,7 @@ namespace Project_finance
             {
                 // Print out the content of the text field:
                 System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["password"]);
+
             }
 
             // We are ready, now lets cleanup and close our connection:
