@@ -109,6 +109,10 @@ namespace Project_finance
             return birthdate;
         }
 
+        public void printUserInfo()
+        {
+            Console.WriteLine(" \nInformation of Person: \nBirthdate: {0} \nName: {1} \nSalary: {2} \nID: {3} \nUsername: {4}\n", birthdate, namePerson, salary, userID, username);
+        }
 
 
         public void loginName()
@@ -177,11 +181,7 @@ namespace Project_finance
 
             // create a new database connection:
             sqlite_conn = new SQLiteConnection("Data Source=BankSystem.db;Version=3;New=False;Compress=True;");
-<<<<<<< HEAD
-=======
 
-           
->>>>>>> origin/master
 
             // open the connection:
             sqlite_conn.Open();
@@ -240,7 +240,7 @@ namespace Project_finance
             sqlite_cmd.CommandText = "SELECT * FROM User";
 
             User[] users = new User[3];
-            User user1 = new User();
+            
             int i = 0;
 
     
@@ -253,26 +253,32 @@ namespace Project_finance
             // The SQLiteDataReader allows us to run through the result lines:
             while (sqlite_datareader.Read()) // Read() returns true if there is still a result line to read
             {
-                user1.setUsername(sqlite_datareader["Username"]);
-                user1.setNamePerson(sqlite_datareader["Name"]);
-                user1.setBirthdate(sqlite_datareader[""]);
-                users[i] = User1;
-               // user1.
+                User user1 = new User();
 
-                // Print out the content of the text field:
-<<<<<<< HEAD
-                System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["password"]);
-=======
-              //("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["Name"]);
-               
-            user1.setBirthdate()
-           
->>>>>>> origin/master
+                user1.setUsername(sqlite_datareader["username"].ToString());
+                user1.SetNamePerson(sqlite_datareader["name"].ToString());
+                user1.setBirthdate(sqlite_datareader["birthdate"].ToString());
+                user1.SetSalary(float.Parse(sqlite_datareader["salary"].ToString()));
+                user1.setUserID(int.Parse(sqlite_datareader["id"].ToString()));
 
+                users[i] = user1;
+                users[i].printUserInfo();
+
+
+                // user1.
+
+                // Print out the content of the text field:<<<<<<< HEAD
+
+                //  System.Console.WriteLine("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["password"]);
+
+                //("Username: {0}    -    Password: {1}", sqlite_datareader["username"], sqlite_datareader["Name"]);
+
+                i++;
             }
-
+            
             // We are ready, now lets cleanup and close our connection:
             sqlite_conn.Close();
+            
 
 
             bool end = false;
