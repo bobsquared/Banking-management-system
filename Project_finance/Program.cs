@@ -12,7 +12,6 @@ namespace Project_finance
     class User
     {
         string username;
-        string password;
         string birthdate;
         int userID;
         float salary;
@@ -20,44 +19,9 @@ namespace Project_finance
 
         //access private variables using the class functions normally, not needed to use 
 
-        public string encryptCaesar()
-        {
-            int shift = 7;
-            string encryption = "";
-
-            for (int i = 0; i < password.Length; i++)
-            {
-
-                int ascii = password[i];
-
-                if (password[i] >= 65 && password[i] <= 90)
-                {
-                    ascii = ((26 - (90 - password[i] + 1) + shift) % 26) + 65;
- 
-
-                }
-                else if (password[i] >= 97 && password[i] <= 122)
-                {
-                    ascii = ((26 - (122 - password[i] + 1) + shift) % 26) + 97;
-
-
-                }
-
-
-                encryption = encryption + (char)ascii;
-            }
-
-            return encryption;
-        }
-
         public string getUsername()
         {
             return username;
-        }
-
-        public string getPassword()
-        {
-            return password;
         }
 
         public string getNameOfPerson()
@@ -75,10 +39,6 @@ namespace Project_finance
             username = name;
         }
 
-        public void setPassword(string pass)
-        {
-            password = pass;
-        }
 
         public void setUserID(int ID)
         {
@@ -113,12 +73,45 @@ namespace Project_finance
         {
             Console.WriteLine(" \nInformation of Person: \nBirthdate: {0} \nName: {1} \nSalary: {2} \nID: {3} \nUsername: {4}\n", birthdate, namePerson, salary, userID, username);
         }
+    }
 
+    class Login {
+
+        string username;
+        string password;
+
+        private string encryptCaesar(string pass)
+        {
+            int shift = 7;
+            string encryption = "";
+
+            for (int i = 0; i < pass.Length; i++)
+            {
+
+                int ascii = pass[i];
+
+                if (pass[i] >= 65 && pass[i] <= 90)
+                {
+                    ascii = ((26 - (90 - pass[i] + 1) + shift) % 26) + 65;
+
+
+                }
+                else if (pass[i] >= 97 && pass[i] <= 122)
+                {
+                    ascii = ((26 - (122 - pass[i] + 1) + shift) % 26) + 97;
+
+
+                }
+
+
+                encryption = encryption + (char)ascii;
+            }
+
+            return encryption;
+        }
 
         public void loginName()
         {
-
-    
 
             while (username == null || username.Length > 50)
             {
@@ -151,6 +144,26 @@ namespace Project_finance
             }
         }
 
+        public string getUsername()
+        {
+            return username;
+        }
+
+        public string getEncrpytion()
+        {
+            return password;
+        }
+
+        public void setUsername(string user)
+        {
+            username = user;
+        }
+
+        public void setPassword(string pass)
+        {
+            password = encryptCaesar(pass);
+        }
+
     }
 
 
@@ -160,14 +173,15 @@ namespace Project_finance
         {
 
             Chequing acc1 = new Chequing();
-            acc1.SetTransactionDate("ass");
+            //acc1.SetTransactionDate("ass");
             Console.WriteLine("Account Name Chosen: {0}", acc1.getTransactionDate());
 
-            User one = new User();
-            one.loginName();
-            one.loginPassword();
-            Console.WriteLine("Username Chosen: {0}", one.getUsername());
-            string encryption = one.encryptCaesar();
+            Login one = new Login();
+            one.setUsername("heyllo");
+            one.setPassword("hellopeople");
+
+            Console.WriteLine(one.getUsername());
+            Console.WriteLine(one.getEncrpytion());
 
 
 
